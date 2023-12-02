@@ -4,6 +4,7 @@ class game:
     def __init__(self):
         self.pulls = []
     
+    @staticmethod
     def parse_text(input_text):
         match = re.match(r'(\d+)\s+(.+)', input_text)
     
@@ -16,13 +17,15 @@ class game:
         return quantity, item
 
     def parseLine(self,line):
+        print(f"line ={line}")
         tokens = line.split(': ')
         games = tokens[1].split('; ')
-        for game in games:
-            cubes = game.split(', ')
+        for thegame in games:
+            cubes = thegame.split(', ')
             pull={}
             for cube in cubes:
-                (num, colour) = self.parse_text(cube)
+                print(f"cube = {cube}")
+                (num, colour) = game.parse_text(cube)
                 pull[colour]=num
             self.pulls.append(pull)
             
