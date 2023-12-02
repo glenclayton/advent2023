@@ -30,7 +30,7 @@ def replace_text(s):
 
 
 
-text_file = open("data/input.txt", "r")
+text_file = open("data/input_day01.txt", "r")
 lines = text_file.readlines()
 print(lines)
 print(len(lines))

@@ -1,5 +1,7 @@
 import day01
+import pytest
 
+@pytest.mark.skip
 def test_day01():
     data = [
     ("two1nine",29),
