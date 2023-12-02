@@ -40,6 +40,19 @@ class game:
             rv = rv and possible
         return rv
 
+    def minimumPower(self):
+        mr=0
+        mb=0
+        mg=0
+        for pull in self.pulls:
+            br = pull.get('red',0)
+            bb = pull.get('blue',0)
+            bg = pull.get('green',0)
+            mr=max(mr,br)
+            mb=max(mb,bb)
+            mg=max(mg,bg)
+        return mr*mb*mg
+
 
 games=[]
 
@@ -51,13 +64,16 @@ text_file.close()
 
 c=1
 sum=0
+powsum=0
 for line in lines:
     thegame=game(c)
     thegame.parseLine(line)
     rv = thegame.checkPossible(12,13,14)
+    pow = thegame.minimumPower()
     if rv:
         sum=sum+c
-    print(f"Game {c} possible is {rv}")
+    print(f"Game {c} possible is {rv} power is {pow}")
     c=c+1
+    powsum=powsum+pow
 
-print(f"Answer={sum}")
+print(f"Answer={sum}, powersum={powsum}")
