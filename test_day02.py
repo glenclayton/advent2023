@@ -2,11 +2,11 @@ import day02
 
 def data():
     test_data= { "data" : [
-    "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
-    "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue",
-    "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red",
-    "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red",
-    "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"]}
+    {"s": "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green", "p":True},
+    {"s":"Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue","p" : True},
+    {"s":"Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red","p" : False},
+    {"s":"Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red","p" : False},
+    {"s":"Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green","p":True}]}
     return test_data
 
 def test_parse():
@@ -19,8 +19,9 @@ def test_parse():
 
 def test_creategame():
     test_data=data()
-    line1 = test_data['data'][0]
-    game1 = day02.game()
+    line1 = test_data['data'][0]['s']
+    game1 = day02.game(0)
+    assert game1.num == 0
     game1.parseLine(line1)
     pulls1 = game1.pulls
     print(pulls1)
@@ -33,3 +34,12 @@ def test_creategame():
     assert pull['green'] == 2
     assert pull['blue'] == 6
 
+def test_checkgame():
+    test_data=data()
+    for line in test_data['data']:
+        line1 = line['s']
+        p1 = line['p']
+        thegame=day02.game(0)
+        thegame.parseLine(line1)
+        rv = thegame.checkPossible(12,13,14)
+        assert rv == p1

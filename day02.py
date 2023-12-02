@@ -1,9 +1,10 @@
 import re
 
 class game:
-    def __init__(self):
+    def __init__(self,num):
         self.pulls = []
-    
+        self.num = num
+
     @staticmethod
     def parse_text(input_text):
         match = re.match(r'(\d+)\s+(.+)', input_text)
@@ -28,7 +29,16 @@ class game:
                 (num, colour) = game.parse_text(cube)
                 pull[colour]=num
             self.pulls.append(pull)
-            
+
+    def checkPossible(self,r,g,b):
+        rv = True
+        for pull in self.pulls:
+            br = pull.get('red',0)
+            bb = pull.get('blue',0)
+            bg = pull.get('green',0)
+            possible = (br<=r) and (bb<=b) and (bg<=g)
+            rv = rv and possible
+        return rv
 
 
 games=[]
