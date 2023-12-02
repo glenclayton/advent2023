@@ -49,4 +49,15 @@ print(lines)
 print(len(lines))
 text_file.close()
 
+c=1
+sum=0
+for line in lines:
+    thegame=game(c)
+    thegame.parseLine(line)
+    rv = thegame.checkPossible(12,13,14)
+    if rv:
+        sum=sum+c
+    print(f"Game {c} possible is {rv}")
+    c=c+1
 
+print(f"Answer={sum}")
