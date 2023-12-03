@@ -23,6 +23,9 @@ class number:
         self.x=x
         self.y=y
         self.xe=x+len(str(number))-1
+    
+    def borders(self, a_symbol):
+        return false
 
 
 def processRow(input,y):
