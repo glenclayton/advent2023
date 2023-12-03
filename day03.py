@@ -14,9 +14,10 @@ def isSymbol(s):
     return s != '.'
 
 class symbol:
-    def __init__(self,x,y):
+    def __init__(self,x,y,sym):
         self.x=x
         self.y=y
+        self.sym=sym
 
 class number:
     width = 10
@@ -64,7 +65,7 @@ def processRow(input,y):
             ns=ns+s
             nm = True
         elif isSymbol(s):
-            sym = symbol(i,y)
+            sym = symbol(i,y,s)
             symbols.append(sym)
             if nm:
                 num = number(int(ns),nstart,y)
@@ -114,6 +115,27 @@ def findAndSum(input):
     answer = sum(partNumbers)
     return answer, sum(dedup)
 
+def findGearSymbols(symbols):
+    newlist = [x for x in symbols if x.sym == '*']
+    return newlist
+
+def findGears(symbols, numbers):
+    gears = findGearSymbols(symbols)
+    ratios = []
+    for gear in gears:
+        nums = []
+        for anumber in numbers:
+            if anumber.borders(gear):
+                nums.append(anumber)
+        if len(nums) == 2:
+            ratios.append(nums[0].number * nums[1].number)
+    return sum(ratios)
+
+def findAndSumGears(lines):
+    symbols,numbers = processBlock(lines)
+    answer = findGears(symbols, numbers)
+    return answer
+
 def compute():
     text_file = open("data/input_day03.txt", "r")
     lines = text_file.readlines()
@@ -122,6 +144,8 @@ def compute():
     text_file.close()
     answer,dd = findAndSum(lines)
     print(f"Day 3 Answer is {answer} or dedups {dd}")
+    answer = findAndSumGears(lines)
+    print(f"Part 2 answer = {answer}")
 
 compute()
 

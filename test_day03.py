@@ -114,3 +114,17 @@ def test_block2():
     test_data=data2()
     answer, dd = day03.findAndSum(test_data)
     assert answer == 925
+
+def test_findGearSymbols():
+    test_data = '..*.*.'
+    symbols, _ = day03.processRow(test_data,0)
+    gears = day03.findGearSymbols(symbols)
+    assert len(gears) == 2
+    assert gears[0].x == 2
+    assert gears[1].x == 4
+
+def test_gears():
+    test_data = data()
+    symbols, numbers = day03.processBlock(test_data)
+    ans = day03.findGears(symbols, numbers)
+    assert ans == 467835
