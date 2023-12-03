@@ -18,4 +18,7 @@ def data():
 def test_inputToArray():
     test_data=['12','34']
     array = day03.inputToArray(test_data)
-    assert array[0][0] == 1
+    assert array[0][0] == '1'
+    assert array[0][1] == '2'
+    assert array[1][0] == '3'
+    assert array[1][1] == '4'
