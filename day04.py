@@ -7,16 +7,16 @@ class card:
         s1 = line.split(":")
         cardno = int(s1[0][4:])
         s2 = s1[1].split('|')
-        ws = ' '+s2[0].strip()
+        ws = s2[0][:-1]
     #print(f"A{ws}A")
         ms = s2[1]
         winners = []
         my = []
         for i in range(0,len(ws)//3):
-         #   print(f"A{ws[i*3:i*3+3]}A")
+            #print(f"A{ws[i*3:i*3+3]}A")
             winners.append(int(ws[i*3:i*3+3]))
         for i in range(0,len(ms)//3):
-          #  print(f"A{ms[i*3:i*3+3]}A")
+            #print(f"A{ms[i*3:i*3+3]}A")
             my.append(int(ms[i*3:i*3+3]))
         return cardno,winners,my
     
@@ -53,7 +53,9 @@ def compute():
     sum=0
     for line in lines:
         mycard=card(line)
-        sum=sum+mycard.points()
+        points = mycard.points()
+        sum=sum+points
+        print(f"{mycard.num}:{sum} {points} | {mycard.winners} | {mycard.yours}")
         a,b = mycard.checkDedup()
         if a or b:
             print(f"card {mycard.num} winner {a} yours {b}")

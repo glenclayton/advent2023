@@ -47,3 +47,10 @@ def test_real():
     assert mycard.yours[7] == 2
     assert mycard.yours[8] == 1
     assert mycard.yours[24] == 92
+    assert mycard.yours[20] == 8
+    assert mycard.points() == 1
+
+def test_real2():
+    test_data = "Card  49:  8 24 35 89 29 80 42 90 79 41 | 16 60 95 58 53  8 55 22 65 15 97 74 64 93 82 51  1 78 73 61 98 23  5  7 37"
+    mycard = day04.card(test_data)
+    assert len(mycard.winners) == 10
