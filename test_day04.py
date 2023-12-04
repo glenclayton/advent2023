@@ -10,4 +10,14 @@ def data():
         "Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36",
         "Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"
     ]
-    
+
+def test_parse():
+    test_data = data()[0]
+    no, winners, my = day04.card.parse(test_data)
+    assert no == 1
+    assert len(winners) == 5 
+    assert winners[0] == 41
+    assert winners[4] == 17
+    assert len(my) == 8
+    assert my[0] == 83
+    assert my[2] == 6

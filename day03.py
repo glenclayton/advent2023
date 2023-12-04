@@ -1,4 +1,5 @@
 
+
 def inputToArray(input):
     rv=[]
     for row in input:
