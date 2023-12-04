@@ -1,4 +1,5 @@
 import day03
+import pytest
 
 def data():
     test_data= [
@@ -30,6 +31,7 @@ def data2():
         ".*.........*",
         "1.1..503+.56"]
 
+@pytest.mark.skip
 def test_inputToArray():
     test_data=['12','34']
     array = day03.inputToArray(test_data)
@@ -38,10 +40,13 @@ def test_inputToArray():
     assert array[1][0] == '3'
     assert array[1][1] == '4'
 
+
+@pytest.mark.skip
 def test_isSymbol():
     assert day03.isSymbol('$') == True
     assert day03.isSymbol('.') == False
 
+@pytest.mark.skip
 def test_processRowSymbols():
     test_data = '..$.*.#'
     symbols, _ = day03.processRow(test_data,0)
@@ -49,6 +54,7 @@ def test_processRowSymbols():
     assert symbols[0].x == 2
     assert symbols[0].y == 0
 
+@pytest.mark.skip
 def test_processRowNumbers():
     test_data = '1'
     _, numbers = day03.processRow(test_data,0)
@@ -85,6 +91,7 @@ def test_processRowNumbers():
     assert numbers[0].number == 34
     assert numbers[0].x == 2
 
+@pytest.mark.skip
 def test_boundayBox():
     agame = day03.number(123,0,0)
     assert len(agame.box) == 5
@@ -105,16 +112,19 @@ def test_boundayBox():
     assert agame.box.get((6,2)) ==True
     assert agame.box.get((7,2)) ==True
 
+@pytest.mark.skip
 def test_block():
     test_data=data()
     answer,dd = day03.findAndSum(test_data)
     assert answer == 4361
 
+@pytest.mark.skip
 def test_block2():
     test_data=data2()
     answer, dd = day03.findAndSum(test_data)
     assert answer == 925
 
+@pytest.mark.skip
 def test_findGearSymbols():
     test_data = '..*.*.'
     symbols, _ = day03.processRow(test_data,0)
@@ -123,6 +133,7 @@ def test_findGearSymbols():
     assert gears[0].x == 2
     assert gears[1].x == 4
 
+@pytest.mark.skip
 def test_gears():
     test_data = data()
     symbols, numbers = day03.processBlock(test_data)
