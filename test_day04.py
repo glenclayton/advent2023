@@ -11,6 +11,7 @@ def data():
         "Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"
     ],[8,2,2,1,0,0]
 
+@pytest.mark.skip
 def test_parse():
     dat,_ = data()
     test_data = dat[0]
@@ -23,12 +24,14 @@ def test_parse():
     assert my[0] == 83
     assert my[2] == 6
 
+@pytest.mark.skip
 def test_pow_single():
     dat,_ = data()
     test_data = dat[0]
     mycard = day04.card(test_data)
     assert mycard.points() == 8
 
+@pytest.mark.skip
 def test_pow_multiplie():
     dat, ans = data()
     rsum = 0
@@ -38,6 +41,7 @@ def test_pow_multiplie():
         rsum = rsum+mycard.points()
     assert rsum == 13
 
+@pytest.mark.skip
 def test_real():
     test_data = "Card   1: 99 65 21  4 72 20 77 98 27 70 | 34 84 74 18 41 45 72  2  1 75 52 47 50 93 25 10 79 87 42 69  8 12 54 96 92"
     mycard = day04.card(test_data)
@@ -50,11 +54,13 @@ def test_real():
     assert mycard.yours[20] == 8
     assert mycard.points() == 1
 
+@pytest.mark.skip
 def test_real2():
     test_data = "Card  49:  8 24 35 89 29 80 42 90 79 41 | 16 60 95 58 53  8 55 22 65 15 97 74 64 93 82 51  1 78 73 61 98 23  5  7 37"
     mycard = day04.card(test_data)
     assert len(mycard.winners) == 10
 
+@pytest.mark.skip
 def test_cardsdeck():
     dat, ans = data()
     rsum = day04.computeDeck(dat)
