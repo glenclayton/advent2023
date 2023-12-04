@@ -21,13 +21,13 @@ class card:
         return cardno,winners,my
     
     def points(self):
-        num = 0
+        self.matches = 0
         powe = 0
         for winner in self.winners:
             if winner in self.yours:
-                num = num+1
-        if num>0:
-            powe = pow(2,num-1)
+                self.matches = self.matches+1
+        if self.matches>0:
+            powe = pow(2,self.matches-1)
         return powe
 
     def checkDedup(self):
@@ -43,6 +43,24 @@ class card:
 
     def __init__(self, line):
         self.num, self.winners, self.yours = card.parse(line)
+
+def addToDeck(deck, acard, times=1):
+    deck[acard]=deck.get(acard,0)+times
+
+def computeDeck(lines):
+    deck = {}
+    for line in lines:
+        mycard=card(line)
+        addToDeck(deck,mycard.num)
+        times = deck[mycard.num]
+        mycard.points()
+        if mycard.matches>0:
+            for newcards in range(mycard.num+1, mycard.num+mycard.matches+1):
+                print(f"Adding card {newcards} {times}")
+                addToDeck(deck,newcards,times)
+    print(f"{deck}")
+    return sum(deck.values())
+
 
 def compute():
     text_file = open("data/input_day04.txt", "r")
@@ -60,6 +78,8 @@ def compute():
         if a or b:
             print(f"card {mycard.num} winner {a} yours {b}")
     print(f"Answer is {sum}")
+    decknumber = computeDeck(lines)
+    print(f"Part 2 Answer is {decknumber}")
 
 compute()
 
