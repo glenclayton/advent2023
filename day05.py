@@ -88,8 +88,10 @@ class almanac:
 
     def minLocationsRange(self):
         real_seeds=[]
-        for i in range(0, len(self.seeds),2):
-            real_seeds = real_seeds+list(range(self.seeds[i], self.seeds[i]+self.seeds[i+1]))
+        i = 0
+        #for i in range(0, len(self.seeds),2):
+        real_seeds = real_seeds+list(range(self.seeds[i], self.seeds[i]+self.seeds[i+1]))
+        print("created range")
         locations = [self.calculateNext('seed',x) for x in real_seeds]
         return min(locations)
 
@@ -106,6 +108,8 @@ def main():
     alm = almanac(lines)
     minLoc = alm.minLocation()
     print(f"min location is {minLoc}")
+    minLoc = alm.minLocationsRange()
+    print(f"min location part 2 is {minLoc}")
 
 main()
 
