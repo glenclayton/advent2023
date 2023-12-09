@@ -16,6 +16,10 @@ class source_destination():
 
 
 class agri_map():
-    def __init__(self):
-        return
+    def parse(self, block):
+        self.parseHeader(block)
+        
+    def __init__(self, block):
+        self.parse(block)
+
 
