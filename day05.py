@@ -89,3 +89,15 @@ class almanac:
     def __init__(self, block):
         self.parseBlock(block)
 
+def main():
+    text_file = open("data/input_day05.txt", "r")
+    lines = text_file.readlines()
+    print(lines)
+    print(len(lines))
+    text_file.close()
+    alm = almanac(lines)
+    minLoc = alm.minLocation()
+    print(f"min location is {minLoc}")
+
+main()
+
