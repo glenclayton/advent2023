@@ -100,3 +100,9 @@ def test_parsealmanac_full():
     assert location == 35
     minLocation = alm.minLocation()
     assert minLocation == 35
+
+def test_parsealmanac_full_p2():
+    test_data = data()
+    alm = day05.almanac(test_data)
+    minLocation = alm.minLocationsRange()
+    assert minLocation == 46

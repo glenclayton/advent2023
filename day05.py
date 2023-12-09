@@ -86,6 +86,14 @@ class almanac:
         locations = [self.calculateNext('seed',x) for x in self.seeds]
         return min(locations)
 
+    def minLocationsRange(self):
+        real_seeds=[]
+        for i in range(0, len(self.seeds),2):
+            real_seeds = real_seeds+list(range(self.seeds[i], self.seeds[i]+self.seeds[i+1]))
+        locations = [self.calculateNext('seed',x) for x in real_seeds]
+        return min(locations)
+
+
     def __init__(self, block):
         self.parseBlock(block)
 
