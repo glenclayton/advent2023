@@ -58,6 +58,14 @@ def test_agrimapparse():
     assert idx == 50
     idx = am.maps[1].mapSource(51)
     assert idx == 53
+    idx = am.mapSource(98)
+    assert idx == 50
+    idx = am.mapSource(51)
+    assert idx == 53
+    idx = am.mapSource(1)
+    assert idx == 1
+    idx = am.mapSource(101)
+    assert idx == 101
 
 def test_parseseeds():
     test_data = ['seeds: 1 3 43 123\n','\n','seed-to-soil map:\n','50 98 2\n','52 50 48\n']
@@ -78,3 +86,17 @@ def test_parsealmanac_full():
     alm = day05.almanac(test_data)
     assert len(alm.seeds) == 4
     assert len(alm.agri_maps) == 7
+
+def test_parsealmanac_full():
+    test_data = data()
+    alm = day05.almanac(test_data)
+    location = alm.calculateNext('seed',79)
+    assert location == 82
+    location = alm.calculateNext('seed',14)
+    assert location == 43
+    location = alm.calculateNext('seed',55)
+    assert location == 86
+    location = alm.calculateNext('seed',13)
+    assert location == 35
+    minLocation = alm.minLocation()
+    assert minLocation == 35

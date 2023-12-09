@@ -34,7 +34,18 @@ class agri_map():
     def parse(self, block):
         self.parseHeader(block)
         self.parseItems(block)
-        
+
+    def mapSource(self,source):
+        idx = -1
+        for sd in self.maps:
+            idx = sd.mapSource(source)
+            if idx != -1:
+                break
+        if idx == -1:
+            idx = source
+        return idx
+
+
     def __init__(self, block):
         self.parse(block)
 
@@ -60,6 +71,20 @@ class almanac:
         if len(runningBlock) > 0 :
             am = agri_map(runningBlock)
             self.agri_maps[am.fromItem]=am
+    
+    def calculateNext(self, source, number):
+        if source == 'location':
+            return number
+        else:
+            theMap = self.agri_maps.get(source)
+            if theMap == None:
+                return number
+            theNumber = theMap.mapSource(number)
+            return self.calculateNext(theMap.toItem,theNumber)
+
+    def minLocation(self):
+        locations = [self.calculateNext('seed',x) for x in self.seeds]
+        return min(locations)
 
     def __init__(self, block):
         self.parseBlock(block)
