@@ -1,4 +1,5 @@
 import pytest
+import day05
 
 def data():
     test_data ="""seeds: 79 14 55 13
@@ -36,3 +37,13 @@ humidity-to-location map:
 56 93 4"""
     return test_data
 
+def test_sourcedestination():
+    sd = day05.source_destination(50, 98, 2)
+    idx = sd.mapSource(98)
+    assert idx == 50
+    idx = sd.mapSource(99)
+    assert idx == 51
+    idx = sd.mapSource(100)
+    assert idx == -1
+    idx = sd.mapSource(10)
+    assert idx == -1
